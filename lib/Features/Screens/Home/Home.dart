@@ -1,4 +1,6 @@
+import 'package:ecommerceproject/Core/Resources/App_Card.dart';
 import 'package:ecommerceproject/Core/Resources/App_Field.dart';
+import 'package:ecommerceproject/Core/Resources/Custom_Button.dart';
 import 'package:ecommerceproject/Features/Widgets/Custom_Password_Field.dart';
 import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
@@ -10,10 +12,7 @@ class Home extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: 500,),
-          AppField(hintText: "Password", labelText: "Password"),
-          SizedBox(height: 30,),
-          CustomPasswordField(hintText: "password", labelText: "password")
-
+          CustomButton()
         ],
       ),
     );
