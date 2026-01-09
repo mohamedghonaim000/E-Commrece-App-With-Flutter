@@ -8,13 +8,16 @@ class AppField extends StatelessWidget {
     this.endIcon,
     required this.hintText,
     this.controller,
-    required this.labelText,
+     this.labelText,
+    this.prefixIcon
   });
   final bool obsecureText;
   final Widget? endIcon;
+  final Widget? prefixIcon;
+
   final String hintText;
   final TextEditingController? controller;
-  final String labelText;
+  final String? labelText;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class AppField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          labelText,
+          labelText??"",
           style: TextStyle(
             color: AppColor.TextColor,
             fontWeight: FontWeight.w400,
@@ -31,16 +34,19 @@ class AppField extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         TextFormField(
+          controller: controller,
           obscureText: obsecureText,
           decoration: InputDecoration(
             suffixIcon: endIcon,
+            prefixIcon: prefixIcon,
             filled: true,
             fillColor: Colors.white,
             hintText: hintText,
             hintStyle: TextStyle(color: AppColor.SecondrayTextColor),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: AppColor.SecondrayTextColor),
+
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color:AppColor.SecondrayTextColor)
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
