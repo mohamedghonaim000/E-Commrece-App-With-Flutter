@@ -2,14 +2,17 @@ import 'package:ecommerceproject/Core/Resources/App_Color.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key});
+  const CustomButton({super.key , required this.btnText, required this.onPressed });
+  final String btnText;
+  final VoidCallback onPressed;
+
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.PrimaryColor,
           shape: RoundedRectangleBorder(
@@ -18,7 +21,7 @@ class CustomButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 16),
         ),
         child: Text(
-          "text",
+          btnText,
           style: TextStyle(
             color: Colors.white,
             fontSize: 18,

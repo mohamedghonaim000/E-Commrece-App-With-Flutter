@@ -12,7 +12,7 @@ class Home extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: 500,),
-          CustomButton()
+
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:ecommerceproject/Core/Resources/App_Color.dart';
 import 'package:ecommerceproject/Core/Resources/App_Field.dart';
 import 'package:flutter/material.dart';
 class CustomPasswordField extends StatefulWidget {
@@ -30,7 +31,7 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
             isHidden =!isHidden;
           });
         },
-          child: isHidden?Icon(Icons.visibility_off):Icon(Icons.visibility)
+          child: isHidden?Icon(Icons.visibility_off ,color: AppColor.SecondrayTextColor,):Icon(Icons.visibility ,color: AppColor.SecondrayTextColor)
       ),
 
     );
