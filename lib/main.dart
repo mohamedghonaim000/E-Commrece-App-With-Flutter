@@ -1,5 +1,7 @@
 import 'package:ecommerceproject/Features/Screens/Home/Home.dart';
 import 'package:ecommerceproject/Features/Screens/Product_Details/Product_Details.dart';
+import 'package:ecommerceproject/Features/Screens/Products/Products.dart';
+import 'package:ecommerceproject/Features/Screens/Search/Search.dart';
 import 'package:ecommerceproject/Features/Screens/Sign%20In/SignIn.dart';
 import 'package:ecommerceproject/Features/Screens/Sign%20Up/SignUp.dart';
 import 'package:ecommerceproject/Features/Widgets/Custom%20_Cart.dart';
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProductDetails(),
+      home: Search(),
     );
   }
 }
