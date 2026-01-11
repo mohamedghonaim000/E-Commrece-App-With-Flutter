@@ -1,4 +1,5 @@
 import 'package:ecommerceproject/Core/Resources/Loading.dart';
+import 'package:ecommerceproject/Features/Screens/Product_Details/Product_Details.dart';
 import 'package:ecommerceproject/Features/Screens/Products/product_cubit.dart';
 import 'package:ecommerceproject/Features/Widgets/Custom%20_Cart.dart';
 import 'package:flutter/material.dart';
@@ -36,14 +37,21 @@ class Products extends StatelessWidget {
                         ),
                         itemCount: state.products.length,
                         itemBuilder: (context, index) {
-                          return Align(
-                            alignment: Alignment.topCenter,
-                            child: CustomCart(
-                              addIcon: true,
-                              image: state.products[index].images![0],
-                              price: state.products[index].price,
-                              title: state.products[index].title,
-                            ),);
+                          return GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context)=>ProductDetails(id: state.products[index].id!,))
+                              );
+                            },
+                            child: Align(
+                              alignment: Alignment.topCenter,
+                              child: CustomCart(
+                                addIcon: true,
+                                image: state.products[index].images![0],
+                                price: state.products[index].price,
+                                title: state.products[index].title,
+                              ),),
+                          );
                         }),
                   ),
                 ],

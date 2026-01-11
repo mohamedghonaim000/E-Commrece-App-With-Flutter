@@ -1,24 +1,38 @@
 import 'package:ecommerceproject/Core/Resources/App_Color.dart';
 import 'package:ecommerceproject/Core/Resources/Custom_Button.dart';
+import 'package:ecommerceproject/Core/Resources/Loading.dart';
+import 'package:ecommerceproject/Features/Screens/Product_Details/product_detail_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+  const ProductDetails({super.key , required this.id});
+  final int id;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return BlocProvider(
+  create: (context) => ProductDetailCubit()..getProductDetail(id),
+  child: Scaffold(
+      body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
+  builder: (context, state) {
+    if(state is ProductLoading){
+      return Loading();
+    }
+    if(state is ProductSucsses){
+      return Column(
+
         children: [
           Stack(
+
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: double.infinity,
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   color: Color(0xFFF5F5F5),
                   image: DecorationImage(
-                    image: AssetImage("assets/images/cover.png"),
+                    image: NetworkImage(state.product.images![0]),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -72,7 +86,7 @@ class ProductDetails extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Text("Nike Shoes" , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w600),),
+                          Text(state.product.title??"" , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w600),),
                           SizedBox(height: 10,),
                           Row(children: [
                             Icon(Icons.star , color: Color(0xffFFC107),size: 24,),
@@ -82,19 +96,13 @@ class ProductDetails extends StatelessWidget {
                         ],
                       ),
                       Spacer(),
-                      Text("\$430" , style: TextStyle(color: AppColor.PrimaryColor , fontWeight: FontWeight.w600 , fontSize: 16),)
+                      Text("\$${state.product.price?.toStringAsFixed(2) ?? "0.00"}" , style: TextStyle(color: AppColor.PrimaryColor , fontWeight: FontWeight.w600 , fontSize: 16),)
                     ],
                   ) ,
                   SizedBox(height: 20,),
                   Text("Description" ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w600),),
                   SizedBox(height: 8,),
-                  Text("Culpa aliquam consequuntur veritatis at"
-                      " consequuntur praesentium beatae temporibus "
-                      "nobis. Velit dolorem facilis neque autem."
-                      " Itaque voluptatem expedita qui "
-                      "eveniet id veritatis eaque. Blanditiis quia"
-                      " placeat nemo. Nobis laudantium nesciunt "
-                      "perspiciatis sit eligendi." , style: TextStyle(color: AppColor.SecondrayTextColor ,fontSize: 12 , fontWeight: FontWeight.w600),),
+                  Text(state.product.description??"", style: TextStyle(color: AppColor.SecondrayTextColor ,fontSize: 12 , fontWeight: FontWeight.w600),),
                   SizedBox(height: 20,),
                   Text("Size" ,style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w600),),
                   SizedBox(height: 12,),
@@ -207,7 +215,14 @@ class ProductDetails extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
+      );
+    }else{
+      return SizedBox();
+    }
+
+  },
+),
+    ),
+);
   }
 }
