@@ -2,13 +2,18 @@ import 'package:ecommerceproject/Core/Resources/App_Color.dart';
 import 'package:flutter/material.dart';
 
 class CustomCart extends StatelessWidget {
-  const CustomCart({super.key, this.addIcon = false ,  this.image ,  this.price , this.title});
+  const CustomCart({
+    super.key,
+    this.addIcon = false,
+    this.image,
+    this.price,
+    this.title,
+  });
 
   final bool addIcon;
   final String? image;
   final String? title;
   final double? price;
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,37 +31,47 @@ class CustomCart extends StatelessWidget {
           ),
         ],
       ),
-      child: Stack(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(15)),
-              child: Container(
-                height: 95,
-                color: const Color(0xffF1F1F1),
-                child: Image.network(
-                  image??"assets/images/Rectangle 4.png",
-                  fit: BoxFit.contain,
+          Expanded(
+            flex: 3,
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(15),
+                  ),
+                  child: Container(
+                    width: double.infinity,
+                    color: const Color(0xffF1F1F1),
+                    child: Image.network(
+                      image ?? "",
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Icon(
+                          Icons.broken_image,
+                          size: 50,
+                          color: Colors.grey,
+                        );
+                      },
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                  top: 5,
+                  right: 5,
+                  child: Icon(
+                    Icons.favorite_border,
+                    size: 20,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+              ],
             ),
           ),
-          Positioned(
-            top: 5,
-            right: 5,
-            child: Icon(
-              Icons.favorite_border,
-              size: 20,
-              color: Colors.grey.shade400,
-            ),
-          ),
-          Positioned(
-            bottom: 8,
-            left: 8,
-            right: 8,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -66,11 +81,15 @@ class CustomCart extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        title??"Watch",
-                        style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                        title ?? "Watch",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
+                      SizedBox(height: 2),
                       Text(
                         "${price?.toStringAsFixed(2) ?? "120.00"} \$",
                         style: TextStyle(
@@ -84,7 +103,7 @@ class CustomCart extends StatelessWidget {
                 ),
                 if (addIcon)
                   Container(
-                    padding: const EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       color: AppColor.PrimaryColor,
                       shape: BoxShape.circle,
@@ -92,7 +111,7 @@ class CustomCart extends StatelessWidget {
                     child: const Icon(
                       Icons.add,
                       color: Colors.white,
-                      size: 18,
+                      size: 16,
                     ),
                   ),
               ],

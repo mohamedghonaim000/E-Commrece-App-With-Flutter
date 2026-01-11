@@ -1,5 +1,9 @@
 import 'package:ecommerceproject/Core/Resources/App_Color.dart';
+import 'package:ecommerceproject/Features/Screens/Account/Account.dart';
+import 'package:ecommerceproject/Features/Screens/Cart/Cart.dart';
 import 'package:ecommerceproject/Features/Screens/Home/Home.dart';
+import 'package:ecommerceproject/Features/Screens/Products/Products.dart';
+import 'package:ecommerceproject/Features/Screens/Search/Search.dart';
 import 'package:flutter/material.dart';
 
 class HomeNav extends StatefulWidget {
@@ -14,8 +18,11 @@ class _HomeNavState extends State<HomeNav> {
 
   final List<Widget> _screens = [
     const Home(),
-    // const Cart(),
-    // const Account(),
+    const Cart(),
+    const Search(),
+    const Products(),
+    const Account(),
+
   ];
 
   @override
@@ -24,7 +31,7 @@ class _HomeNavState extends State<HomeNav> {
 
       body: _screens[_selectedIndex],
       bottomNavigationBar: SizedBox(
-        height: 100,
+        height: 70,
         child: BottomNavigationBar(
 
           currentIndex: _selectedIndex,
@@ -46,6 +53,14 @@ class _HomeNavState extends State<HomeNav> {
             BottomNavigationBarItem(
               icon: Icon(Icons.shopping_cart),
               label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search_sharp),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.production_quantity_limits),
+              label: 'Products',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.account_circle),

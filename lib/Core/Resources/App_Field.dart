@@ -9,12 +9,13 @@ class AppField extends StatelessWidget {
     required this.hintText,
     this.controller,
      this.labelText,
-    this.prefixIcon
+    this.prefixIcon,
+    this.onSubmitted
   });
   final bool obsecureText;
   final Widget? endIcon;
   final Widget? prefixIcon;
-
+  final Function(String)? onSubmitted;
   final String hintText;
   final TextEditingController? controller;
   final String? labelText;
@@ -34,6 +35,7 @@ class AppField extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         TextFormField(
+          onFieldSubmitted:onSubmitted ,
           controller: controller,
           obscureText: obsecureText,
           decoration: InputDecoration(
@@ -43,7 +45,6 @@ class AppField extends StatelessWidget {
             fillColor: Colors.white,
             hintText: hintText,
             hintStyle: TextStyle(color: AppColor.SecondrayTextColor),
-
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color:AppColor.SecondrayTextColor)

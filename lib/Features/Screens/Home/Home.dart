@@ -1,6 +1,7 @@
 import 'package:ecommerceproject/Core/Resources/App_Color.dart';
 import 'package:ecommerceproject/Core/Resources/App_Field.dart';
 import 'package:ecommerceproject/Core/Resources/Loading.dart';
+import 'package:ecommerceproject/Features/Screens/Home/home_cubit.dart';
 import 'package:ecommerceproject/Features/Screens/Product_Details/Product_Details.dart';
 import 'package:ecommerceproject/Features/Screens/Products/Products.dart';
 import 'package:ecommerceproject/Features/Screens/Products/product_cubit.dart';
@@ -18,6 +19,7 @@ class Home extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ProductCubit()..getProducts()),
+        BlocProvider(create: (context) => HomeCubit()..getCategories()),
       ],
 
       child: Scaffold(
@@ -71,10 +73,10 @@ class Home extends StatelessWidget {
                 // search Field
                 SizedBox(height: 5),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context)=>Search())
-                    );
+                  onTap: () {
+                    Navigator.of(
+                      context,
+                    ).push(MaterialPageRoute(builder: (context) => Search()));
                   },
                   child: AppField(
                     hintText: "Search here",
@@ -99,9 +101,9 @@ class Home extends StatelessWidget {
                     ),
                     Spacer(),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context)=>Products())
+                          MaterialPageRoute(builder: (context) => Products()),
                         );
                       },
                       child: Text(
@@ -118,10 +120,10 @@ class Home extends StatelessWidget {
                 SizedBox(height: 12),
                 BlocBuilder<ProductCubit, ProductState>(
                   builder: (context, state) {
-                    if(state is ProductLoading){
+                    if (state is ProductLoading) {
                       return Loading();
                     }
-                    if(state is ProductSucsses){
+                    if (state is ProductSucsses) {
                       return SizedBox(
                         height: 150,
                         child: ListView.separated(
@@ -129,9 +131,13 @@ class Home extends StatelessWidget {
                           padding: EdgeInsets.only(right: 20),
                           itemCount: 8,
                           itemBuilder: (context, index) => GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.of(context).push(
-                                  MaterialPageRoute(builder: (context)=>ProductDetails(id: state.products[index].id!))
+                                MaterialPageRoute(
+                                  builder: (context) => ProductDetails(
+                                    id: state.products[index].id!,
+                                  ),
+                                ),
                               );
                             },
                             child: CustomCart(
@@ -141,12 +147,12 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           separatorBuilder: (context, index) =>
-                          const SizedBox(width: 8),
+                              const SizedBox(width: 8),
                         ),
                       );
-                    }else{
+                    } else {
                       ProductFailuer(Msg: "Error");
-                       return SizedBox();
+                      return SizedBox();
                     }
                   },
                 ),
@@ -173,16 +179,33 @@ class Home extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 12),
-                SizedBox(
-                  height: 150,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(right: 20),
-                    itemCount: 8,
-                    itemBuilder: (context, reason) => CustomCart(),
-                    separatorBuilder: (context, index) =>
-                        const SizedBox(width: 8),
-                  ),
+                BlocBuilder<HomeCubit, HomeState>(
+                  builder: (context, state) {
+                    if(state is HomeLoading){
+                      return Loading();
+                    }
+                    if(state is HomeSuccess){
+                      return SizedBox(
+                        height: 150,
+                        child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          padding: EdgeInsets.only(right: 20),
+                          itemCount: 8,
+                          itemBuilder: (context, index) => CustomCart(
+                            image: state.list[index].image,
+                            price: state.list[index].price,
+                            title: state.list[index].title,
+                          ),
+                          separatorBuilder: (context, index) =>
+                          const SizedBox(width: 8),
+                        ),
+                      );
+                    }else{
+                      HomeFailure("Error");
+                      return SizedBox();
+                    }
+
+                  },
                 ),
               ],
             ),

@@ -7,6 +7,7 @@ import 'package:ecommerceproject/Core/Resources/Loading.dart';
 import 'package:ecommerceproject/Features/Screens/Bottom_Nav_Bar/Home_Nav.dart';
 import 'package:ecommerceproject/Features/Screens/Home/Home.dart';
 import 'package:ecommerceproject/Features/Screens/Sign%20In/auth_cubit.dart';
+import 'package:ecommerceproject/Features/Screens/Sign%20Up/SignUp.dart';
 import 'package:ecommerceproject/Features/Widgets/Custom_Password_Field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -98,7 +99,7 @@ class Signin extends StatelessWidget {
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children:  [
                         Text(
                           "Don`t Have Account?",
                           style: TextStyle(
@@ -107,11 +108,18 @@ class Signin extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 4),
-                        Text(
-                          "Sign Up",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 12,
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context)=>SignUp())
+                            );
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                            ),
                           ),
                         ),
                       ],

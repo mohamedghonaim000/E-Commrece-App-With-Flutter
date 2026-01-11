@@ -3,6 +3,7 @@ class AppEndPoints{
   static const login ="auth/login";
   static const products = "products";
   static const productDetail = "products/";
+  static const search="products/search?q=";
 
 
 

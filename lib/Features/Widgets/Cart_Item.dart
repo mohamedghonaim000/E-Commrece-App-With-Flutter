@@ -27,7 +27,7 @@ class Cartitem extends StatelessWidget {
       child: Row(
         children: [
           Image.asset(
-            "assets/images/Container.png",
+            "assets/images/Rectangle 4.png",
             height: 80,
             width: 80,
             fit: BoxFit.cover,
