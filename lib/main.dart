@@ -1,3 +1,4 @@
+import 'package:ecommerceproject/Features/Screens/Account/Account.dart';
 import 'package:ecommerceproject/Features/Screens/Splash/Splash.dart';
 import 'package:flutter/material.dart';
 import 'Core/Network/Dio_Helper.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: Account(),
     );
   }
 }

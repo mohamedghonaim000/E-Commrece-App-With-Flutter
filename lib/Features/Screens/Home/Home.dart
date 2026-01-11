@@ -1,8 +1,10 @@
 import 'package:ecommerceproject/Core/Resources/App_Color.dart';
 import 'package:ecommerceproject/Core/Resources/App_Field.dart';
 import 'package:ecommerceproject/Core/Resources/Loading.dart';
+import 'package:ecommerceproject/Features/Screens/Product_Details/Product_Details.dart';
 import 'package:ecommerceproject/Features/Screens/Products/Products.dart';
 import 'package:ecommerceproject/Features/Screens/Products/product_cubit.dart';
+import 'package:ecommerceproject/Features/Screens/Search/Search.dart';
 import 'package:ecommerceproject/Features/Widgets/Cursol_Slider.dart';
 import 'package:ecommerceproject/Features/Widgets/Custom%20_Cart.dart';
 import 'package:flutter/material.dart';
@@ -68,11 +70,18 @@ class Home extends StatelessWidget {
                 ),
                 // search Field
                 SizedBox(height: 5),
-                AppField(
-                  hintText: "Search here",
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: AppColor.SecondrayTextColor,
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context)=>Search())
+                    );
+                  },
+                  child: AppField(
+                    hintText: "Search here",
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: AppColor.SecondrayTextColor,
+                    ),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -119,10 +128,17 @@ class Home extends StatelessWidget {
                           scrollDirection: Axis.horizontal,
                           padding: EdgeInsets.only(right: 20),
                           itemCount: 8,
-                          itemBuilder: (context, index) => CustomCart(
-                            title: state.products[index].title,
-                            price: state.products[index].price,
-                            image: state.products[index].images![0],
+                          itemBuilder: (context, index) => GestureDetector(
+                            onTap: (){
+                              Navigator.of(context).push(
+                                  MaterialPageRoute(builder: (context)=>ProductDetails(id: state.products[index].id!))
+                              );
+                            },
+                            child: CustomCart(
+                              title: state.products[index].title,
+                              price: state.products[index].price,
+                              image: state.products[index].images![0],
+                            ),
                           ),
                           separatorBuilder: (context, index) =>
                           const SizedBox(width: 8),
