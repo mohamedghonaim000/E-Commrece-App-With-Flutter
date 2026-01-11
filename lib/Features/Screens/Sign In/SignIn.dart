@@ -41,7 +41,7 @@ class Signin extends StatelessWidget {
               );
 
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context)=>Home())
+                  MaterialPageRoute(builder: (context)=>HomeNav())
               );
             }
           },

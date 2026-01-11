@@ -85,6 +85,7 @@ class ProductDetails extends StatelessWidget {
                   Row(
                     children: [
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(state.product.title??"" , style: TextStyle(fontSize: 20 , fontWeight: FontWeight.w600),),
                           SizedBox(height: 10,),
@@ -170,7 +171,6 @@ class ProductDetails extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 29,),
                   Spacer(),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 15),
@@ -178,7 +178,7 @@ class ProductDetails extends StatelessWidget {
                       children: [
                         Expanded(
                           child: SizedBox(
-                            height: 48,
+                            height: 52,
                             child: CustomButton(
                               btnText: "Buy Now",
                               onPressed: () {},
@@ -206,10 +206,6 @@ class ProductDetails extends StatelessWidget {
                       ],
                     ),
                   )
-
-
-
-
                 ],
               ),
             ),

@@ -47,7 +47,7 @@ class CustomCart extends StatelessWidget {
                     color: const Color(0xffF1F1F1),
                     child: Image.network(
                       image ?? "",
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         return Icon(
                           Icons.broken_image,

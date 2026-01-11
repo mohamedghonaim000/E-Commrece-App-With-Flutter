@@ -14,6 +14,7 @@ class Products extends StatelessWidget {
       create: (context) => ProductCubit()..getProducts(),
       child: Scaffold(
         appBar: AppBar(
+          leading: SizedBox.shrink(),
           title: Text(
             "Products",
             style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),

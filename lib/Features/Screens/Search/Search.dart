@@ -50,35 +50,49 @@ class Search extends StatelessWidget {
                         }
 
                         if (state is SearchSuccess) {
-                          return GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 0.7,
-                            ),
-                            itemCount: state.list.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) => ProductDetails(
-                                        id: state.list[index].id!,
-                                      ),
+                          return Column(
+                            children: [
+                              SizedBox(height: 17,),
+                              Row(
+                                children: [
+                                  Text("Results for"  , style: TextStyle(color: AppColor.SecondrayTextColor ,fontSize: 14),),
+                                  Text(state.list[0].category! ,style: TextStyle(fontWeight: FontWeight.bold ,fontSize: 14)),
+                                  Spacer(),
+                                  Text("${state.list.length} Results Found"  , style: TextStyle(color: AppColor.PrimaryColor ,fontSize: 14),),
+                                ],
+                              ),
+                              SizedBox(height: 17,),
+                              GridView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  childAspectRatio: 0.7,
+                                ),
+                                itemCount: state.list.length,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => ProductDetails(
+                                            id: state.list[index].id!,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: CustomCart(
+                                      addIcon: true,
+                                      image: state.list[index].images![0],
+                                      price: state.list[index].price,
+                                      title: state.list[index].title,
                                     ),
                                   );
                                 },
-                                child: CustomCart(
-                                  addIcon: true,
-                                  image: state.list[index].images![0],
-                                  price: state.list[index].price,
-                                  title: state.list[index].title,
-                                ),
-                              );
-                            },
+                              ),
+                            ],
                           );
                         }
 

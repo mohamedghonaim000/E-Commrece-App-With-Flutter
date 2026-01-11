@@ -10,7 +10,7 @@ class AppField extends StatelessWidget {
     this.controller,
      this.labelText,
     this.prefixIcon,
-    this.onSubmitted
+    this.onSubmitted,
   });
   final bool obsecureText;
   final Widget? endIcon;
