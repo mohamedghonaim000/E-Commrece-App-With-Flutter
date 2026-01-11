@@ -1,3 +1,4 @@
+import 'package:ecommerceproject/Features/Screens/Products/Products.dart';
 import 'package:ecommerceproject/Features/Screens/Sign%20In/SignIn.dart';
 import 'package:flutter/material.dart';
 import 'Core/Network/Dio_Helper.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Signin(),
+      home: Products(),
     );
   }
 }

@@ -2,9 +2,13 @@ import 'package:ecommerceproject/Core/Resources/App_Color.dart';
 import 'package:flutter/material.dart';
 
 class CustomCart extends StatelessWidget {
-  const CustomCart({super.key, this.addIcon = false});
+  const CustomCart({super.key, this.addIcon = false ,  this.image ,  this.price , this.title});
 
   final bool addIcon;
+  final String? image;
+  final String? title;
+  final double? price;
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +37,8 @@ class CustomCart extends StatelessWidget {
               child: Container(
                 height: 95,
                 color: const Color(0xffF1F1F1),
-                child: Image.asset(
-                  "assets/images/Rectangle 4.png",
+                child: Image.network(
+                  image??"assets/images/Rectangle 4.png",
                   fit: BoxFit.contain,
                 ),
               ),
@@ -61,14 +65,14 @@ class CustomCart extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text(
-                        "Watch",
+                      Text(
+                        title??"Watch",
                         style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        "\$120.00",
+                        "${price?.toStringAsFixed(2) ?? "120.00"} \$",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
