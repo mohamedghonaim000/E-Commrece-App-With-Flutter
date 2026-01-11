@@ -1,8 +1,6 @@
-import 'package:ecommerceproject/Features/Screens/Products/Products.dart';
-import 'package:ecommerceproject/Features/Screens/Sign%20In/SignIn.dart';
+import 'package:ecommerceproject/Features/Screens/Splash/Splash.dart';
 import 'package:flutter/material.dart';
 import 'Core/Network/Dio_Helper.dart';
-import 'Features/Screens/Bottom_Nav_Bar/Home_Nav.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Products(),
+      home: Splash(),
     );
   }
 }

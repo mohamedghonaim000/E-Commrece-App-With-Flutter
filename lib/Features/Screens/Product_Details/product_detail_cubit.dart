@@ -15,7 +15,6 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
       final response = await DioHelper.getRequest(
           endPoint:AppEndPoints.productDetail+id.toString()
       );
-      print(response);
       if(response.statusCode==200 || response.statusCode==201){
         ProductModel productModel = ProductModel.fromJson(response.data);
         emit(ProductSucsses(product: productModel));
