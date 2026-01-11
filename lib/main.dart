@@ -1,15 +1,11 @@
-import 'package:ecommerceproject/Features/Screens/Home/Home.dart';
-import 'package:ecommerceproject/Features/Screens/Product_Details/Product_Details.dart';
-import 'package:ecommerceproject/Features/Screens/Products/Products.dart';
-import 'package:ecommerceproject/Features/Screens/Search/Search.dart';
 import 'package:ecommerceproject/Features/Screens/Sign%20In/SignIn.dart';
-import 'package:ecommerceproject/Features/Screens/Sign%20Up/SignUp.dart';
-import 'package:ecommerceproject/Features/Widgets/Custom%20_Cart.dart';
 import 'package:flutter/material.dart';
-
+import 'Core/Network/Dio_Helper.dart';
 import 'Features/Screens/Bottom_Nav_Bar/Home_Nav.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.initDio();
   runApp(const MyApp());
 }
 
@@ -21,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Search(),
+      home: Signin(),
     );
   }
 }
